@@ -440,7 +440,7 @@ ngpl_east = int(burn.cell(column=3,row=25).value)
 #fg['AX1647'] = tetco_tsq
 #fg['F1647'] = ngpl_east
 '''
-# Below are the cells which should be changed everyday to the next row.
+# Below are the cells that correspond to the Excel file. 
 fg['C' + joecount] = kmlp_sabine
 fg['D' + joecount] = transco_gulf_trace
 fg['G' + joecount] = trunk_to_creole
