@@ -188,6 +188,52 @@ print("CornL2K Total Scheduled Capacity: ",cornl2k_tsq)
 print("CornL2K Operationally Available Capacity: ",cornl2k_opavailcap)
 
 
+
+# Below is the excel automation
+
+
+# Northern Natural Gas Counter
+sue_northern_counter = open("suenorthernnaturalcounter.txt","r+") # Opens counter file
+suenngcounter = str(int(sue_northern_counter.read())+1) # Reads file and takes the count, changes to integer, adds 1 and changes back to string
+print(suenngcounter)
+suenortherncounter = open('suenorthernnaturalcounter.txt', 'r+') # read state
+suenortherncounter.truncate(0) # Deletes present count
+suenortherncounterfile = open("suenorthernnaturalcounter.txt","w") # write state
+suenortherncounterfile.write(suenngcounter) # writes updated number to .txt file
+suenortherncounterfile.close() # closes file
+
+# NGPL Counter
+ngpl_counter_file = open("suengplcounter.txt","r+") # Opens counter file
+suengplcounter = str(int(ngpl_counter_file.read())+1) # Reads file and takes the count, changes to integer, adds 1 and changes back to string
+print(suengplcounter)
+ngpl_count = open('suengplcounter.txt', 'r+') # read state
+ngpl_count.truncate(0) # Deletes present count
+suengplcounterfile = open("suengplcounter.txt","w") # write state
+suengplcounterfile.write(suengplcounter) # writes updated number to .txt file
+suengplcounterfile.close() # closes file
+
+# Transwestern Counter
+sue_trans_counter_file = open("suetranswesterncounter.txt","r+") # Opens counter file
+transcount = str(int(sue_trans_counter_file.read())+1) # Reads file and takes the count, changes to integer, adds 1 and changes back to string
+print(transcount)
+transcounter = open('suetranswesterncounter.txt', 'r+') # read state
+transcounter.truncate(0) # Deletes present count
+suetranscounterfile = open("suetranswesterncounter.txt","w") # write state
+suetranscounterfile.write(transcount) # writes updated number to .txt file
+suetranscounterfile.close() # closes file
+
+# El Paso Counter
+elpaso_counter_file = open("sueelpasocounter.txt","r+") # Opens counter file
+elpasocount = str(int(elpaso_counter_file.read())+1) # Reads file and takes the count, changes to integer, adds 1 and changes back to string
+print(elpasocount)
+suecounter = open('sueelpasocounter.txt', 'r+') # read state
+suecounter.truncate(0) # Deletes present count
+elpasocounterfile = open("sueelpasocounter.txt","w") # write state
+elpasocounterfile.write(elpasocount) # writes updated number to .txt file
+elpasocounterfile.close() # closes file
+
+
+
 # Below is a library structure
 values = { 'LOC': ['Brownfield North Group D Design Capacity','Brownfield North Group D Operating Capacity','Brownfield North Group D Total Scheduled Quantity','Brownfield North Group D Operationally Available Capacity','North of Sta. 167 Design Capacity','North of Sta. 167 Operating Capacity','North of Sta. 167 Total Scheduled Quantity','North of Sta. 167 Operationally Available Capacity','WT-1 System M2 Operating Capacity','WT-1 System M2 Total Scheduled Quanitity','WT-1 System M2 Operationally Available Capacity','Caprock N Design Capacity','Caprock N Operating Capacity','Caprock N Total Scheduled Quantity','Caprock N Operationally Available Capacity','Perm N Design Capacity','Perm N Operating Capacity','Perm N Total Scheduled Quantity','Perm N Operationally Available Capacity','CornHPW Design Capacity','CornHPW Operating Capacity','CornHPW Total Scheduled Quantity','CornHPW Operationally Available Capacity','CornLPW Design Capacity','CornLPW Operating Capacity','CornLPW Total Scheduled Quantity','CornLPW Operationally Available Capacity','Corntrn Design Capacity','Corntrn Operating Capacity','Corntrn Total Scheduled Quantity','Corntrn Operationally Available Capacity','CornL2K Design Capacity','CornL2K Operating Capacity','CornL2K Total Scheduled Quantity','CornL2K Operationally Available Capacity'],
            'TSQ': [nngas_designcap,nngas_opcap,nngas_tsq,nngas_opavail,ngpl_designcap,ngpl_opcap,ngpl_tsq,ngpl_opavailcap,wt1_opcap,wt1_tsq,wt1_opavailcap,caprock_designcap,caprock_opcap,caprock_tsq,caprock_opavailcap,permn_designcap,permn_opcap,permn_tsq,permn_opavailcap,cornhpw_designcap,cornhpw_opcap,cornhpw_tsq,cornhpw_opavailcap,cornlpw_designcap,cornlpw_opcap,cornlpw_tsq,cornlpw_opavailcap,corntrn_designcap,corntrn_opcap,corntrn_tsq,corntrn_opavailcap,cornl2k_designcap,cornl2k_opcap,cornl2k_tsq,cornl2k_opavailcap]}
@@ -198,96 +244,96 @@ dframe.to_excel('SueDataBurner.xlsx') # Creates a burner Excel sheet with datafr
 
 
 # Below is the Excel Automation
-burner = openpyxl.load_workbook("/Users/rajgarkhedkar/Desktop/Enkon/2020/SueDataBurner.xlsx") # assigns this file to variable 'burner'
+burner = openpyxl.load_workbook("/Users/rajgarkhedkar/Desktop/Enkon/2020/SueAutomation/SueDataBurner.xlsx") # assigns this file to variable 'burner'
 burn = burner['Sheet1'] # Assigns the proper sheet from burner workbook
-pipedatabase = openpyxl.load_workbook('/Users/rajgarkhedkar/Desktop/Enkon/2020/Sue Pipeline Data.xlsx') # Main file assigned to variable 'feedgas'
+pipedatabase = openpyxl.load_workbook('/Users/rajgarkhedkar/Desktop/Enkon/2020/SueAutomation/Sue Pipeline Data.xlsx') # Main file assigned to variable 'feedgas'
 
 nngas_sheet = pipedatabase['Northern Natural Gas Co'] # Assigns this variable 'Northern Natural Gas Co' sheet on the Excel database
 ngpl_sheet = pipedatabase['NGPL'] # Assigns this variable 'NGPL' sheet on the Excel database
 transwestern_sheet = pipedatabase['Transwestern '] # Assigns this variable 'Transwestern' sheet on the Excel database
 elpaso_sheet = pipedatabase['El Paso'] # Assigns this variable 'El Paso' sheet on the Excel database
 
-brownfield_design = burn.cell(column=3,row=2).value
-brownfield_opcap = burn.cell(column=3,row=3).value
-brownfield_tsq = burn.cell(column=3,row=4).value
-brownfield_opavail = burn.cell(column=3,row=5).value
+brownfield_design = int(burn.cell(column=3,row=2).value)
+brownfield_opcap = int(burn.cell(column=3,row=3).value)
+brownfield_tsq = int(burn.cell(column=3,row=4).value)
+brownfield_opavail = int(burn.cell(column=3,row=5).value)
 
-north167_design = burn.cell(column=3,row=6).value
-north167_opcap = burn.cell(column=3,row=7).value
-north167_tsq = burn.cell(column=3,row=8).value
-north167_opavail = burn.cell(column=3,row=9).value
+north167_design = int(burn.cell(column=3,row=6).value)
+north167_opcap = int(burn.cell(column=3,row=7).value)
+north167_tsq = int(burn.cell(column=3,row=8).value)
+north167_opavail = int(burn.cell(column=3,row=9).value)
 
-wt1system_opcap = burn.cell(column=3,row=10).value
-wt1system_tsq = burn.cell(column=3,row=11).value
-wt1system_opavail = burn.cell(column=3,row=12).value
+wt1system_opcap = int(burn.cell(column=3,row=10).value)
+wt1system_tsq = int(burn.cell(column=3,row=11).value)
+wt1system_opavail = int(burn.cell(column=3,row=12).value)
 
-caprockn_designcap = burn.cell(column=3,row=13).value
-caprockn_opcap = burn.cell(column=3,row=14).value
-caprockn_tsq = burn.cell(column=3,row=15).value
-caprockn_opavail = burn.cell(column=3,row=16).value
+caprockn_designcap = int(burn.cell(column=3,row=13).value.replace(',',''))
+caprockn_opcap = int(burn.cell(column=3,row=14).value.replace(',',''))
+caprockn_tsq = int(burn.cell(column=3,row=15).value.replace(',',''))
+caprockn_opavail = int(burn.cell(column=3,row=16).value.replace(',',''))
 
-perm_designcap = burn.cell(column=3,row=17).value
-perm_opcap = burn.cell(column=3,row=18).value
-perm_tsq = burn.cell(column=3,row=19).value
-perm_opavail = burn.cell(column=3,row=20).value
+perm_designcap = int(burn.cell(column=3,row=17).value.replace(',',''))
+perm_opcap = int(burn.cell(column=3,row=18).value.replace(',',''))
+perm_tsq = int(burn.cell(column=3,row=19).value.replace(',',''))
+perm_opavail = int(burn.cell(column=3,row=20).value.replace(',',''))
 
-cornhpwdesign = burn.cell(column=3,row=21).value
-cornhpwopcap = burn.cell(column=3,row=22).value
-cornhpwtsq = burn.cell(column=3,row=23).value
-cornhpwopavail = burn.cell(column=3,row=24).value
+cornhpwdesign = int(burn.cell(column=3,row=21).value.replace(',',''))
+cornhpwopcap = int(burn.cell(column=3,row=22).value.replace(',',''))
+cornhpwtsq = int(burn.cell(column=3,row=23).value.replace(',',''))
+cornhpwopavail = int(burn.cell(column=3,row=24).value.replace(',',''))
 
-cornlpwdesign = burn.cell(column=3,row=25).value
-cornlpwopcap = burn.cell(column=3,row=26).value
-cornlpwtsq = burn.cell(column=3,row=27).value
-cornlpwopavail = burn.cell(column=3,row=28).value
+cornlpwdesign = int(burn.cell(column=3,row=25).value.replace(',',''))
+cornlpwopcap = int(burn.cell(column=3,row=26).value.replace(',',''))
+cornlpwtsq = int(burn.cell(column=3,row=27).value.replace(',',''))
+cornlpwopavail = int(burn.cell(column=3,row=28).value.replace(',',''))
 
-corntrndesign = burn.cell(column=3,row=29).value
-corntrnopcap = burn.cell(column=3,row=30).value
-corntrntsq = burn.cell(column=3,row=31).value
-corntrnopavail = burn.cell(column=3,row=32).value
+corntrndesign = int(burn.cell(column=3,row=29).value.replace(',',''))
+corntrnopcap = int(burn.cell(column=3,row=30).value.replace(',',''))
+corntrntsq = int(burn.cell(column=3,row=31).value.replace(',',''))
+corntrnopavail = int(burn.cell(column=3,row=32).value.replace(',',''))
 
-cornl2kdesign = burn.cell(column=3,row=33).value
-cornl2kopcap = burn.cell(column=3,row=34).value
-cornl2ktsq = burn.cell(column=3,row=35).value
-cornl2kopavail = burn.cell(column=3,row=36).value
+cornl2kdesign = int(burn.cell(column=3,row=33).value.replace(',',''))
+cornl2kopcap = int(burn.cell(column=3,row=34).value.replace(',',''))
+cornl2ktsq = int(burn.cell(column=3,row=35).value.replace(',',''))
+cornl2kopavail = int(burn.cell(column=3,row=36).value.replace(',',''))
 
 
-nngas_sheet['G374'] = brownfield_design
-nngas_sheet['H374'] = brownfield_opcap
-nngas_sheet['I374'] = brownfield_tsq
+nngas_sheet['G' + suenngcounter] = brownfield_design
+nngas_sheet['H' + suenngcounter] = brownfield_opcap
+nngas_sheet['I' + suenngcounter] = brownfield_tsq
 
-ngpl_sheet['E382'] = north167_design
-ngpl_sheet['F382'] = north167_opcap
-ngpl_sheet['G382'] = north167_tsq
+ngpl_sheet['E' + suengplcounter] = north167_design
+ngpl_sheet['F' + suengplcounter] = north167_opcap
+ngpl_sheet['G' + suengplcounter] = north167_tsq
 
-transwestern_sheet['F413'] = wt1system_opcap
-transwestern_sheet['G413'] = wt1system_tsq
+transwestern_sheet['F' + transcount] = wt1system_opcap
+transwestern_sheet['G' + transcount] = wt1system_tsq
 
-elpaso_sheet['E369'] = caprockn_designcap
-elpaso_sheet['F369'] = caprockn_opcap
-elpaso_sheet['G369'] = caprockn_tsq
+elpaso_sheet['E' + elpasocount] = caprockn_designcap
+elpaso_sheet['F' + elpasocount] = caprockn_opcap
+elpaso_sheet['G' + elpasocount] = caprockn_tsq
 
-elpaso_sheet['L369'] = perm_designcap
-elpaso_sheet['M369'] = perm_opcap
-elpaso_sheet['N369'] = perm_tsq
+elpaso_sheet['L' + elpasocount] = perm_designcap
+elpaso_sheet['M' + elpasocount] = perm_opcap
+elpaso_sheet['N' + elpasocount] = perm_tsq
 
-elpaso_sheet['S369'] = cornhpwdesign
-elpaso_sheet['T369'] = cornhpwopcap
-elpaso_sheet['U369'] = cornhpwtsq
+elpaso_sheet['S' + elpasocount] = cornhpwdesign
+elpaso_sheet['T' + elpasocount] = cornhpwopcap
+elpaso_sheet['U' + elpasocount] = cornhpwtsq
 
-elpaso_sheet['X369'] = cornlpwdesign
-elpaso_sheet['Y369'] = cornlpwopcap
-elpaso_sheet['Z369'] = cornlpwtsq
+elpaso_sheet['X' + elpasocount] = cornlpwdesign
+elpaso_sheet['Y' + elpasocount] = cornlpwopcap
+elpaso_sheet['Z' + elpasocount] = cornlpwtsq
 
-elpaso_sheet['AC369'] = corntrndesign
-elpaso_sheet['AD369'] = corntrnopcap
-elpaso_sheet['AE369'] = corntrntsq
+elpaso_sheet['AC' + elpasocount] = corntrndesign
+elpaso_sheet['AD' + elpasocount] = corntrnopcap
+elpaso_sheet['AE' + elpasocount] = corntrntsq
 
-elpaso_sheet['AH369'] = cornl2kdesign
-elpaso_sheet['AI369'] = cornl2kopcap
-elpaso_sheet['AJ369'] = cornl2ktsq
+elpaso_sheet['AH' + elpasocount] = cornl2kdesign
+elpaso_sheet['AI' + elpasocount] = cornl2kopcap
+elpaso_sheet['AJ' + elpasocount] = cornl2ktsq
 
-pipedatabase.save(filename='/Users/rajgarkhedkar/Desktop/Enkon/2020/Sue Pipeline Data.xlsx')
+pipedatabase.save(filename='/Users/rajgarkhedkar/Desktop/Enkon/2020/SueAutomation/Sue Pipeline Data.xlsx')
 os.remove('SueDataBurner.xlsx')
 
 print("Daily Scraping Complete!")
