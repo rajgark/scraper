@@ -3,7 +3,7 @@
 By law, pipelines are required to post what is called "Informational Postings" or simply put, data from various times throughout the day.
 This data captures the amount of whatever is flowing through the pipeline (Natural Gas Liquids, Crude Oil, Liquefied Natural Gas...etc.) 
 The data is entered by "LOC" which is a unique identifier of a certain point along this pipeline.
-The quantity we are interested in is called "TSQ" or "Total Scheduled Quantity" which is MMbtu's of whatever is nominated to flow through the pipeline. 
+The quantity we are interested in is called "TSQ" or "Total Scheduled Quantity" which are MMbtu's of whatever is nominated to flow through the pipeline. 
 
 Knowing this information gives us an understanding of the activity on a very in depth level on a certain pipeline, do with the information what you must... 
 
